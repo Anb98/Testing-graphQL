@@ -1,11 +1,12 @@
 const resolverFunctions = {
 	Query: {
 		hello: (obj, arg, context, info) => {
+			// console.log('info.fieldNodes :', info.fieldNodes);
 			return 'world';
 		},
 
 		alguien:(obj, arg, context, info)=>{
-			console.log("Path to params selected", info.fieldNodes[0].selectionSet.selections);
+			const campos = getFieldNames(info.fieldNodes);
 			
 			return {
 				edad:98,
