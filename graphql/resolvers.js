@@ -1,22 +1,13 @@
+const {readDB, getFieldNames} = require('./../util')
+
 const resolverFunctions = {
 	Query: {
-		hello: (obj, arg, context, info) => {
-			// console.log('info.fieldNodes :', info.fieldNodes);
-			return 'world';
-		},
+		user:async (obj, {uid}, context, info)=>{
 
-		alguien:(obj, arg, context, info)=>{
-			const campos = getFieldNames(info.fieldNodes);
+			const [{fields}] = getFieldNames(info.fieldNodes);
+			const result = await readDB('User', fields, uid);
 			
-			return {
-				edad:98,
-				nombre:'abdiel',
-				apellido:'martinez',
-				pais:{
-					id:3,
-					nombre:'el salvador'
-				}
-			};
+			return result;
 		}
 	}
 };

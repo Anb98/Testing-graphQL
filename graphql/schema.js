@@ -2,20 +2,37 @@ const {gql} = require('apollo-server-express');
 
 const schema = gql`
 	type Query {
-		hello: String
-		alguien: Persona
+		user(uid: String): User
 	}
 
-	type Persona {
-		nombre: String
-		apellido: String
-		edad: Int
-		pais: Pais
+	type User {
+		id: ID
+		name: String
+		username: String
+		email: String
+		address: Address
+		phone: String
+		website: String
+		company: Company
 	}
 
-	type Pais {
-		id: Int
-		nombre: String
+	type Address {
+		street: String
+		suite: String
+		city: String
+		zipcode: String
+		geo: Geo
+	}
+
+	type Geo {
+		lat: String,
+		lng: String
+	}
+
+	type Company {
+		name: String
+		catchPhrase: String
+		bs: String
 	}
 `;
 
